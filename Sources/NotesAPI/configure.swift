@@ -7,8 +7,8 @@ import Vapor
 func configure(_ app: Application) async throws {
     // uncomment to serve files from /Public folder
     // app.middleware.use(FileMiddleware(publicDirectory: app.directory.publicDirectory))
-
-    app.databases.use(DatabaseConfigurationFactory.sqlite(.file("db.sqlite")), as: .sqlite)
+    let dbPath = Environment.get("DATABASE_PATH") ?? "db.sqlite"
+    app.databases.use(DatabaseConfigurationFactory.sqlite(.file(dbPath)), as: .sqlite)
 
     app.migrations.add(CreateTodo())
 
