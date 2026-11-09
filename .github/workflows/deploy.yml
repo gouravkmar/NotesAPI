@@ -1,0 +1,15 @@
+name: Deploy NotesAPI
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: [self-hosted, linux, x64]
+    steps:
+      - name: Deploy on home server
+        run: /home/gourav/deploy-notesapi.sh
